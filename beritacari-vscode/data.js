@@ -1,20 +1,3 @@
-// ============================================================
-//  DATA BERITA — BeritaCari
-//  Edit file ini untuk menambah / mengubah berita
-//
-//  Format tiap berita:
-//  {
-//    id       : angka unik (jangan sampai sama)
-//    title    : judul berita
-//    snippet  : ringkasan 2-3 kalimat
-//    source   : nama media
-//    category : "Ekonomi" | "Teknologi" | "Politik" |
-//               "Kesehatan" | "Olahraga" | "Pendidikan" | "Hiburan"
-//    date     : "DD Mon YYYY"
-//    url      : link berita asli
-//  }
-// ============================================================
-
 const NEWS = [
 
   // ── EKONOMI ──────────────────────────────────────────────
