@@ -1,9 +1,3 @@
-// ============================================================
-//  engine.js — Algoritma Information Retrieval
-//  TF-IDF + Cosine Similarity
-//  Mata Kuliah Information Retrieval — UNUGHA Cilacap
-// ============================================================
-
 // ── Stopwords Bahasa Indonesia ──────────────────────────────
 const STOPWORDS = new Set([
   'yang','dan','di','ke','dari','dengan','untuk','ini','itu',
@@ -27,13 +21,6 @@ let tfidfVecs = [];  // vektor TF-IDF tiap dokumen
 let isReady  = false;
 
 // ── 1. Tokenizer ─────────────────────────────────────────────
-/**
- * Ubah teks menjadi array token bersih
- * - lowercase
- * - hapus tanda baca & angka
- * - buang stopword
- * - minimal 3 karakter
- */
 function tokenize(teks) {
   return teks
     .toLowerCase()
@@ -43,10 +30,6 @@ function tokenize(teks) {
 }
 
 // ── 2. Hitung TF (Term Frequency) ────────────────────────────
-/**
- * TF(t, d) = count(t di d) / max_count(semua term di d)
- * Normalisasi agar nilai antara 0-1
- */
 function hitungTF(tokens) {
   const freq = {};
   tokens.forEach(t => { freq[t] = (freq[t] || 0) + 1; });
@@ -59,11 +42,6 @@ function hitungTF(tokens) {
 }
 
 // ── 3. Hitung IDF (Inverse Document Frequency) ───────────────
-/**
- * IDF(t) = log((N+1) / (df(t)+1)) + 1   (smooth IDF)
- * N    = total dokumen
- * df   = jumlah dokumen yang mengandung term t
- */
 function hitungIDF(semuaTF, N) {
   const df = {};
   semuaTF.forEach(tf => {
@@ -91,10 +69,6 @@ function hitungTFIDF(tf, idf) {
 }
 
 // ── 5. Cosine Similarity ─────────────────────────────────────
-/**
- * sim(Q, D) = (Q · D) / (||Q|| × ||D||)
- * Nilai antara 0 (tidak relevan) dan 1 (sangat relevan)
- */
 function cosineSimilarity(vecQ, vecD) {
   let dotProduct = 0;
   let normQ = 0;
@@ -114,10 +88,6 @@ function cosineSimilarity(vecQ, vecD) {
 }
 
 // ── 6. Build Index ───────────────────────────────────────────
-/**
- * Proses seluruh corpus sekali di awal (indexing phase)
- * Dipanggil 1x saat halaman dimuat
- */
 function buildIndex(data) {
   const N = data.length;
   const semuaTF = [];
@@ -151,12 +121,6 @@ function buildIndex(data) {
 }
 
 // ── 7. Search / Retrieval ────────────────────────────────────
-/**
- * Fungsi utama pencarian
- * @param {string} query    - kata kunci dari pengguna
- * @param {string} filter   - filter kategori ('all' atau nama kategori)
- * @returns {Array}         - daftar dokumen terurut by relevansi
- */
 function cariBerita(query, filter = 'all') {
   if (!isReady) return [];
 
