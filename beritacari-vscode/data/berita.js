@@ -1,9 +1,3 @@
-// ============================================================
-//  DATA BERITA — 50 artikel berita Indonesia
-//  Mata Kuliah Information Retrieval
-//  Jihan Galuh Putri — NIM 23EO10034 — Informatika UNUGHA
-// ============================================================
-
 const BERITA = [
 
   // ── EKONOMI (10 artikel) ──────────────────────────────────
@@ -543,6 +537,3 @@ const BERITA = [
   },
 
 ];
-
-// Ekspor untuk digunakan di engine.js
-// (Jika tidak pakai module, variabel BERITA otomatis global)
